@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Research Lab</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        pre { background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; white-space: pre-wrap; font-family: monospace; }
+    </style>
+</head>
+<body class="bg-light p-5">
+    <div class="container bg-white p-5 rounded shadow">
+        <h1 class="text-center">🔬 Deep Research Agent</h1>
+        <form method="POST" class="my-4 d-flex gap-2">
+            <input type="text" name="query" class="form-control" placeholder="What do you want to research?" required>
+            <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+        {% if report %}
+            <div class="d-flex justify-content-between mb-2">
+                <strong>research_output.txt</strong>
+                <form action="/download" method="POST">
+                    <input type="hidden" name="content" value="{{ report }}">
+                    <button class="btn btn-sm btn-success">📥 Download</button>
+                </form>
+            </div>
+            <pre>{{ report }}</pre>
+        {% endif %}
+    </div>
+</body>
+</html>

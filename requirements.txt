@@ -1,0 +1,10 @@
+flask
+langchain
+langchain-core
+langchain-community
+langchain-groq
+wikipedia
+duckduckgo-search
+ddgs
+python-dotenv
+pydantic
