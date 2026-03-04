@@ -1,11 +1,13 @@
-import os, io, re, json
+import os, io, re, json, warnings
+os.environ["PYTHONWARNINGS"] = "ignore::DeprecationWarning"
+warnings.filterwarnings("ignore", message=".*create_react_agent.*")
 from datetime import datetime
 from flask import Flask, render_template, request, send_file
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
 from langchain_groq import ChatGroq
 from langchain_core.output_parsers import PydanticOutputParser
-from langchain.agents import create_agent
+from langgraph.prebuilt import create_react_agent
 from tools import tools
 
 load_dotenv()
@@ -47,7 +49,7 @@ def index():
         3. Your final response must be ONLY a JSON object:
         {parser.get_format_instructions()}"""
         
-        agent = create_agent(model=llm, tools=tools, system_prompt=system_prompt)
+        agent = create_react_agent(model=llm, tools=tools, prompt=system_prompt)
         
         try:
             result = agent.invoke({"messages": [("human", query)]})

@@ -3,6 +3,7 @@ langchain
 langchain-core
 langchain-community
 langchain-groq
+langgraph
 wikipedia
 duckduckgo-search
 ddgs
